@@ -1,0 +1,2 @@
+[functions.career-cockpit]
+verify_jwt = false

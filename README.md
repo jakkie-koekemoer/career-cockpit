@@ -1,31 +1,32 @@
 # Career Cockpit
 
-Private application-management dashboard for Jakkie Koekemoer's engineering leadership job search.
+Private application-management dashboard for Jakkie and Maryka Koekemoer.
 
 ## Live architecture
 
 - **Supabase Career project** is the canonical data store.
-- **Supabase Edge Function `career-cockpit`** serves the live dashboard and its private API.
-- **GitHub** stores the reproducible project configuration and schema.
-- The dashboard is protected by a long random browser-held access key; only its SHA-256 hash is stored in the deployed function.
-- Database RLS remains enabled as defence in depth.
+- **GitHub** stores the reproducible dashboard source and schema.
+- Google sign-in is restricted to authorised cockpit members.
+- Row Level Security isolates each member's applications, activity, feedback and private resume configuration.
 
 ## Current capabilities
 
-- Prioritized application pipeline and fit scores
+- Separate Jakkie and Maryka application pipelines based on the signed-in Google account
+- Prioritised roles and fit scores
 - Search and status filters
-- Status updates persisted to Supabase
-- Editable next actions and notes
-- Application links and contact/profile links
+- Status updates, editable next actions and notes persisted to Supabase
+- Application and contact links
 - Tailored outreach messages with copy-to-clipboard
 - Compensation positioning, gaps and application/interview preparation
 - Application activity history
+- Role-specific resume PDF generation from private Supabase-backed resume configuration
+- General and role-specific feedback queue for ChatGPT, with responses visible in the cockpit
 - Responsive desktop/mobile interface
 
 ## Documents
 
-Role-specific resumes remain in the canonical ChatGPT Career Search Library while private document hosting is being connected to the live dashboard. The interface already has the document slot, so adding storage will not change the workflow.
+Canonical Word/PDF resumes remain in the ChatGPT Career Search Library. The dashboard generates application-ready PDF copies from private role-specific resume configurations stored behind Supabase RLS, avoiding public resume content in the GitHub repository.
 
 ## Supabase
 
-`supabase/schema.sql` documents the application data model. `supabase/config.toml` records the Edge Function's custom-auth configuration.
+The Supabase project stores applications, members, activity, feedback and private resume configuration. RLS is the primary access-control boundary for cockpit data.

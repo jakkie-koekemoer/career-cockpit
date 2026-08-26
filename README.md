@@ -30,3 +30,7 @@ Canonical Word/PDF resumes remain in the ChatGPT Career Search Library. The dash
 ## Supabase
 
 The Supabase project stores applications, members, activity, feedback and private resume configuration. RLS is the primary access-control boundary for cockpit data.
+
+## Deployment
+
+Production is connected to this GitHub repository on Vercel. Commits to `main` trigger a fresh deployment.
